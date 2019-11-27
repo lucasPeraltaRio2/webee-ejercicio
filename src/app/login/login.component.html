@@ -1,0 +1,22 @@
+<div>
+    <form [formGroup]="userForm" class="form">
+        <div >
+            <mat-form-field class="input">
+                <input matInput placeholder="Email" formControlName="email">
+            </mat-form-field>
+        </div>
+        <div >
+            <mat-form-field class="input">
+                <input matInput placeholder="Password" formControlName="password" type="password">
+            </mat-form-field>
+        </div>
+        <div style="text-align:center;padding-top: 20px">
+            <button mat-raised-button color="primary" (click)="login()" type="submit" [disabled]="userForm.invalid" class="button">
+                Login
+            </button>
+            <button mat-button class="button" (click)="userForm.reset()">
+                Reset
+            </button>
+        </div>
+    </form>
+</div>

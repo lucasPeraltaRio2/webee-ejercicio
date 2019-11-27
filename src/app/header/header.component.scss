@@ -1,0 +1,12 @@
+.example-fill-remaining-space {
+    /* This fills the remaining space, by using flexbox. 
+       Every toolbar row uses a flexbox row layout. */
+    flex: 1 1 auto;
+  }
+  .logo { 
+       width: 6.5rem; 
+       height: 2.5rem; 
+       display: block;
+       text-indent: -9999px;
+       z-index: 100;
+  }

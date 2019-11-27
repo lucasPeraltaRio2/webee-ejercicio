@@ -1,0 +1,15 @@
+$color-footer: #000000;
+.footer{
+    height: 50px;
+    background: $color-footer;
+    color: #e2e0e0;
+    font-size: 0.8rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 99;
+}
