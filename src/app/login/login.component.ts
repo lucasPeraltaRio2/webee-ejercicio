@@ -4,6 +4,7 @@ import { User } from '../shared/user';
 import { ApiService } from '../services/api-service';
 import { MatDialog, MatDialogRef } from '@angular/material';
 import { DialogComponent } from '../dialog/dialog.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,7 @@ import { DialogComponent } from '../dialog/dialog.component';
 export class LoginComponent implements OnInit {
   userForm: FormGroup;
   loginDialog: MatDialogRef<DialogComponent>;
-  constructor(public apiService: ApiService, public dialog: MatDialog) { }
+  constructor(public apiService: ApiService, public dialog: MatDialog, private route: Router) { }
 
   ngOnInit() {
     this.userForm = new FormGroup({
@@ -28,7 +29,8 @@ export class LoginComponent implements OnInit {
     const user: User = this.userForm.value;
     this.apiService.login(this.userForm.value).subscribe(res => {
       console.log(res);
-      
+      localStorage.setItem('token', res.token);
+      this.route.navigate(['/accounts']);
     },
     error => {
       this.loginDialog = this.dialog.open(DialogComponent);

@@ -1,1 +1,10 @@
-<p>accounts works!</p>
+<div class="mat-headline">Users</div>
+<div class="container">
+    <mat-card class="card" *ngFor="let account of listaAccounts">
+        <mat-card-header>
+            <span mat-card-title class="md-card-title">{{account.first_name}} {{account.last_name}}</span>
+            <img mat-card-avatar [src]="account.avatar">
+            <span mat-card-subtitle class="md-card-subtitle">{{account.email}}</span>
+        </mat-card-header>
+    </mat-card>
+</div>

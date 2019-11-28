@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AccountsComponent } from '../accounts/accounts.component';
 import { AccountsRuteoModule } from '../accounts/accounts-ruteo.module';
+import { MaterialModule } from './material.module';
 
 
 
@@ -9,7 +10,8 @@ import { AccountsRuteoModule } from '../accounts/accounts-ruteo.module';
   declarations: [AccountsComponent],
   imports: [
     CommonModule,
-    AccountsRuteoModule
+    AccountsRuteoModule,
+    MaterialModule
   ]
 })
 export class AccountsModule { }
