@@ -2,8 +2,11 @@
     <img src="assets/images/logo.png" class="logo">
     <span class="example-fill-remaining-space"></span>
     <div>
-        <a mat-button routerLink="/login">
-            Login
+        <span *ngIf="(estaLogueado | async)">
+            {{nombreUsuario | async}}
+        </span>
+        <a *ngIf="(estaLogueado | async)" mat-button (click)="logout()">
+            <mat-icon aria-hidden="false">exit_to_app</mat-icon>
         </a>
     </div>
 </mat-toolbar>
