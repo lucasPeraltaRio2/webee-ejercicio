@@ -1,40 +1,40 @@
-import { actionsLogin, LOGIN, LOGIN_SUCCESS, LOGIN_FAIL } from '../actions/login.actions';
-export interface LoginState {
-    token: string;
+import { actionsUsers, FETCH_USERS, FETCH_USERS_SUCCESS, FETCH_USERS_FAIL } from '../actions/users.actions';
+export interface UsersState {
+    listaAccounts: Account[];
     loaded: boolean;
     loading: boolean;
     error: string;
 }
-const estadoInicial: LoginState = {
-    token: null,
+const estadoInicial: UsersState = {
+    listaAccounts: [],
     loaded: false,
     loading: false,
     error: null
 }
-export function loginreducer(state = estadoInicial, action: actionsLogin): LoginState {
+export function usersreducer(state = estadoInicial, action: actionsUsers): UsersState {
     switch ((action.type)) {
-        case LOGIN:
+        case FETCH_USERS:
             return {
                 ...state,
                 loading: true,
                 loaded: false,
             };
-        case LOGIN_SUCCESS:
-            let retorno: LoginState;
+        case FETCH_USERS_SUCCESS:
+            let retorno: UsersState;
             retorno = {
                 ...retorno,
-                token: action.payload,
+                listaAccounts: action.payload.data,
                 loaded: true,
                 loading: false
             };
             return retorno;
-        case LOGIN_FAIL:
+        case FETCH_USERS_FAIL:
             return {
                 ...state,
-                token: null,
                 loading: false,
                 loaded: true,
-                error: action.payload
+                listaAccounts: [],
+                error: action.payload.error.error.error
             };
         default: return state;
 

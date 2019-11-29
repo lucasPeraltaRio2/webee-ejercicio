@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../services/api-service';
+import { Store } from '@ngrx/store';
+import { AppState } from '../store/appReducers';
+import { FetchUsersAction } from '../store/actions/users.actions';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-accounts',
@@ -8,14 +12,19 @@ import { ApiService } from '../services/api-service';
 })
 export class AccountsComponent implements OnInit {
   listaAccounts: Account[];
+  accountsSubscription = new Subscription();
   columnas: string[] = ['avatar','email', 'first_name', 'last_name'];
-  constructor(public apiService: ApiService) { }
+  constructor(public apiService: ApiService, private store: Store<AppState>) { }
 
   ngOnInit() {
-    this.apiService.getUsers().subscribe(res => {
-      console.log(res);
-      this.listaAccounts = res.data;
+    this.store.dispatch(new FetchUsersAction({}));
+    this.accountsSubscription = this.store.select('users').subscribe(res => {
+      this.listaAccounts = res.listaAccounts;
     })
   }
+
+  ngOnDestroy() {
+    this.accountsSubscription.unsubscribe();
+   }
 
 }

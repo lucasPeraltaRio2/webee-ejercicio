@@ -35,19 +35,28 @@ export class LoginComponent implements OnInit {
     this.loading = true;
     this.store.dispatch(new LoginAction(this.userForm.value));
     this.loginSubscription = this.store.select('login').subscribe(res => {
-      this.loading = false;
-      localStorage.setItem('token', res.token);
-      this.route.navigate(['/accounts']);
+      this.loading = res.loading;
+      if (res.loaded) {
+        if (res.token) {
+          localStorage.setItem('token', res.token);
+          this.route.navigate(['/accounts']);
+        } else {
+          this.loginDialog = this.dialog.open(DialogComponent);
+          this.loginDialog.componentInstance.message = res.error;
+        }
+       this.loginSubscription.unsubscribe();
+      }
     },
-    error => {
-      this.loading = false;
-      this.loginDialog = this.dialog.open(DialogComponent);
-      this.loginDialog.componentInstance.message = error.error.error});
-   
+      error => {
+        this.loading = false;
+        this.loginDialog = this.dialog.open(DialogComponent);
+        this.loginDialog.componentInstance.message = error.error.error
+      });
+
   }
 
   ngOnDestroy() {
     this.loginSubscription.unsubscribe();
-   }
+  }
 
 }

@@ -16,7 +16,6 @@ import { ApiService } from './api-service';
   export class ApiInterceptorService implements HttpInterceptor {
     constructor(public auth: ApiService) { }
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-      console.log(localStorage.getItem('token'));
       if (localStorage.getItem('token') == null) {
         return next.handle(request).pipe(
           map((event: HttpEvent<any>) => {
