@@ -1,3 +1,7 @@
+<div class=backdrop *ngIf="loading"></div>
+<div class="spinner">
+<mat-spinner *ngIf="loading"></mat-spinner>
+</div>
 <div>
     <form [formGroup]="userForm" class="form">
         <div >

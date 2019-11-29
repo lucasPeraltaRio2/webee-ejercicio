@@ -14,7 +14,9 @@ import {
   MatNativeDateModule,
   MatRadioModule,
   MatDialogModule,
-  MatTableModule
+  MatTableModule,
+  MatSpinner,
+  MatProgressSpinnerModule
 } from '@angular/material';
 
 @NgModule({
@@ -34,7 +36,8 @@ import {
     MatNativeDateModule,
     MatRadioModule,
     MatDialogModule,
-    MatTableModule
+    MatTableModule,
+    MatProgressSpinnerModule
   ],
   exports: [
     MatSidenavModule,
@@ -51,7 +54,8 @@ import {
     MatNativeDateModule,
     MatRadioModule,
     MatDialogModule,
-    MatTableModule
+    MatTableModule,
+    MatProgressSpinnerModule
   ],
   providers: [
     MatDatepickerModule
