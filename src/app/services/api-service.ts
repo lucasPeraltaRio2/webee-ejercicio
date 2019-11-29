@@ -10,7 +10,6 @@ export class ApiService {
     estaLogueadoSubj = new BehaviorSubject<boolean>(this.tieneToken());
     usuarioSubj = new BehaviorSubject<string>(null);
     public login(user: any): any {
-        //const headers = new HttpHeaders({'Content-type':'application/json'});
         const urlServicio = environment.urlApi+'/login';
         const params = user;
         return this.httpC.post<any>(urlServicio, params, {})

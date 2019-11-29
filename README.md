@@ -3,9 +3,22 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.13.
 
+## Clone the repo
+
+git clone https://github.com/lucasPeraltaRio2/webee-ejercicio.git
+
+## Install npm packages
+npm install
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+
+## Login Component
+Go to http://localhots:4200 and enter your email and password 
+
+## Accounts Component
+After a successfull login, you will be redirected to the accounts component
 
 ## Code scaffolding
 
