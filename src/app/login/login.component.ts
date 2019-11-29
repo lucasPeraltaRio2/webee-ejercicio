@@ -5,6 +5,10 @@ import { ApiService } from '../services/api-service';
 import { MatDialog, MatDialogRef } from '@angular/material';
 import { DialogComponent } from '../dialog/dialog.component';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { AppState } from '../store/appReducers';
+import { LoginAction } from '../store/actions/login.actions';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +19,8 @@ export class LoginComponent implements OnInit {
   userForm: FormGroup;
   loading = false;
   loginDialog: MatDialogRef<DialogComponent>;
-  constructor(public apiService: ApiService, public dialog: MatDialog, private route: Router) { }
+  loginSubscription = new Subscription();
+  constructor(public apiService: ApiService, public dialog: MatDialog, private route: Router, private store: Store<AppState>) { }
 
   ngOnInit() {
     this.userForm = new FormGroup({
@@ -27,9 +32,9 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    const user: User = this.userForm.value;
     this.loading = true;
-    this.apiService.login(this.userForm.value).subscribe(res => {
+    this.store.dispatch(new LoginAction(this.userForm.value));
+    this.loginSubscription = this.store.select('login').subscribe(res => {
       this.loading = false;
       localStorage.setItem('token', res.token);
       this.route.navigate(['/accounts']);
@@ -40,5 +45,9 @@ export class LoginComponent implements OnInit {
       this.loginDialog.componentInstance.message = error.error.error});
    
   }
+
+  ngOnDestroy() {
+    this.loginSubscription.unsubscribe();
+   }
 
 }
