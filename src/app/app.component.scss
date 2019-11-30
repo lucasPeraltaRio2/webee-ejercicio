@@ -7,9 +7,22 @@ $color-footer: #000000;
     display: flex;
     justify-content: center;
     align-items: center;
-    position: absolute;
     bottom: 0;
-    left: 0;
     width: 100%;
-    z-index: 99;
 }
+
+.wrapper {
+    min-height: 82vh;
+    position: relative;
+}
+
+@media all and (min-width: 1024px){
+    .footer {
+       position: absolute;
+      }
+  }
+  @media all and (min-width: 768px){
+    .footer {
+       position: absolute;
+      }
+  } 

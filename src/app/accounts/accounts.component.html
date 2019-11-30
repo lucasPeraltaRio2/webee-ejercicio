@@ -1,10 +1,19 @@
-<div class="mat-headline">Users</div>
+<div class="headline">
+    <div class="mat-headline">Users</div>
+    <button mat-raised-button color="primary" (click)="agregar()">Agregar</button>
+</div>
 <div class="container">
-    <mat-card class="card" *ngFor="let account of listaAccounts">
-        <mat-card-header>
+    <mat-card class="card" *ngFor="let account of listaAccounts,let i = index">
+        <mat-card-header class="header-card">
             <span mat-card-title class="md-card-title">{{account.first_name}} {{account.last_name}}</span>
             <img mat-card-avatar [src]="account.avatar">
             <span mat-card-subtitle class="md-card-subtitle">{{account.email}}</span>
+            <div class="edit" (click)="editar(account, i)">
+                <mat-icon class="icon-edit">edit</mat-icon>
+            </div>
+            <div class="edit" (click)="eliminar(i)">
+                <mat-icon class="icon-delete">delete</mat-icon>
+            </div>
         </mat-card-header>
     </mat-card>
 </div>

@@ -7,5 +7,37 @@
 }
 .card{
     margin: 1rem;
-    width: 20vw;
+    min-width:  15rem;
 }
+
+.headline{
+    padding-left: 4rem;
+}
+
+.edit{
+    cursor: pointer;
+}
+
+.icon-edit{
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.icon-delete{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.header-card {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+@media (max-height: 360px) {
+    .card{
+        margin: 1rem;
+        min-width:  50vw;
+    }
+  }
