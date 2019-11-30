@@ -14,7 +14,7 @@ import { Accounts } from '../shared/account';
   styleUrls: ['./accounts.component.scss']
 })
 export class AccountsComponent implements OnInit {
-  listaAccounts: Account[];
+  listaAccounts: Accounts[];
   accountsSubscription = new Subscription();
   columnas: string[] = ['avatar', 'email', 'first_name', 'last_name'];
   constructor(public apiService: ApiService, private store: Store<AppState>, public dialog: MatDialog) { }
@@ -22,7 +22,9 @@ export class AccountsComponent implements OnInit {
   ngOnInit() {
     this.store.dispatch(new FetchUsersAction({}));
     this.accountsSubscription = this.store.select('users').subscribe(res => {
+      if(res){
       this.listaAccounts = res.listaAccounts;
+      }
     })
   }
 

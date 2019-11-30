@@ -3,5 +3,5 @@ export interface Accounts {
     email: string;
     first_name: string;
     id: number;
-    last_name: number;
+    last_name: string;
 }

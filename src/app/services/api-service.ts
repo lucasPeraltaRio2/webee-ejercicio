@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import { map } from 'rxjs/operators';
 import { User } from '../shared/user';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { Accounts } from '../shared/account';
 @Injectable()
 export class ApiService {
   constructor(private httpC: HttpClient) { }
@@ -36,7 +37,7 @@ export class ApiService {
         }));
   }
 
-  public editAccount(account: Account) {
+  public editAccount(account: Accounts) {
     const urlServicio = environment.urlApi + '/users';
     return this.httpC.put<any>(urlServicio, {})
       .pipe(map(
@@ -45,7 +46,7 @@ export class ApiService {
         }));
   }
 
-  public createAccount(account: Account) {
+  public createAccount(account: Accounts) {
     const urlServicio = environment.urlApi + '/users';
     return this.httpC.post<any>(urlServicio, account, {})
       .pipe(map(

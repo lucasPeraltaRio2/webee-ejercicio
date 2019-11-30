@@ -1,6 +1,7 @@
 import { actionsUsers, FETCH_USERS, FETCH_USERS_SUCCESS, FETCH_USERS_FAIL } from '../actions/users.actions';
+import { Accounts } from 'src/app/shared/account';
 export interface UsersState {
-    listaAccounts: Account[];
+    listaAccounts: Accounts[];
     loaded: boolean;
     loading: boolean;
     error: string;

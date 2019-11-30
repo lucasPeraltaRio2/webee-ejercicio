@@ -13,7 +13,7 @@ export class AccountComponent implements OnInit {
 
   constructor(public apiService: ApiService, public accountDialog: MatDialogRef<AccountComponent>) { }
   accountForm: FormGroup;
-  modo: string;
+  modo: string= 'A';
   account: Accounts;
   tituloPopUp: string;
   ngOnInit() {

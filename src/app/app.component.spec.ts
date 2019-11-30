@@ -1,15 +1,20 @@
 import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+import { HeaderComponent } from './header/header.component';
+import { MaterialModule } from './modules/material.module';
+import { ApiServiceMock } from './mocks/api-service.mock';
+import { ApiService } from './services/api-service';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        RouterTestingModule, MaterialModule
       ],
+      providers: [{ provide: ApiService, useClass: ApiServiceMock }],
       declarations: [
-        AppComponent
+        AppComponent, HeaderComponent
       ],
     }).compileComponents();
   }));
@@ -26,10 +31,4 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('webee-challenge');
   });
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('webee-challenge app is running!');
-  });
 });
